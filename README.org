@@ -1,0 +1,4 @@
+* Gonads
+ gonads is monads... but in go
+** Types
+ * Maybe
