@@ -27,21 +27,6 @@ func None[T any]() Maybe[T] {
 	return &NoneType[T]{}
 }
 
-func (m *SomeType[T]) Bind(f func(T) Monad[T]) Monad[T] {
-	return f(m.value)
-}
-
-func (m *SomeType[T]) Unwrap() T {
-	return m.value
-}
-func (m *SomeType[T]) String() string {
-	typeName := reflect.TypeOf(m).Elem().Name()
-	return fmt.Sprintf("Some[%s{%v}", strings.SplitAfter(typeName, "[")[1], m.value)
-}
-
-func (m *SomeType[T]) Return(value T) Monad[T] {
-	return Some(value)
-}
 
 func (m *NoneType[T]) Bind(f func(T) Monad[T]) Monad[T] {
 	return None[T]()
@@ -60,3 +45,21 @@ func (m *NoneType[T]) String() string {
 func (m *NoneType[T]) Return(value T) Monad[T] {
 	return None[T]()
 }
+
+func (m *SomeType[T]) Bind(f func(T) Monad[T]) Monad[T] {
+	return f(m.value)
+}
+
+func (m *SomeType[T]) Unwrap() T {
+	return m.value
+}
+func (m *SomeType[T]) String() string {
+	typeName := reflect.TypeOf(m).Elem().Name()
+	return fmt.Sprintf("Some[%s{%v}", strings.SplitAfter(typeName, "[")[1], m.value)
+}
+
+func (m *SomeType[T]) Return(value T) Monad[T] {
+	return Some(value)
+}
+
+
