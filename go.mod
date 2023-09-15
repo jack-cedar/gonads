@@ -1,3 +1,3 @@
-module github.com/jack-cedar/gonads v0.0.1
+module github.com/jack-cedar/gonads
 
 go 1.20
