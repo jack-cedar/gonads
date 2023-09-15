@@ -1,4 +1,4 @@
-package monads
+package gonads
 
 type Monad[T any] interface {
 	Bind(func(T) Monad[T]) Monad[T]
